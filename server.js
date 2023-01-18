@@ -1,15 +1,14 @@
 // Import dependencies
 const express = require("express");
 const msal = require("@azure/msal-node");
-require("dotenv").config();
-
+const CONFIG = require('./config/config')
 // Authentication parameters
 const config = {
   auth: {
-    clientId:process.env.CLIENT_ID,
-    authority:`${process.env.CLOUD_INSTANCE}/${process.env.TENANT_ID}`
+    clientId:CONFIG.CLIENT_ID,
+    authority:`${CONFIG.CLOUD_INSTANCE}/${CONFIG.TENANT_ID}`
      ,
-    clientSecret: `${process.env.CLIENT_SECRET}`,
+    clientSecret: `${CONFIG.CLIENT_SECRET}`,
   },
   system: {
     loggerOptions: {
@@ -22,7 +21,7 @@ const config = {
   },
 };
 
-const REDIRECT_URI = `${process.env.REDIRECT_URI}`;
+const REDIRECT_URI = `${CONFIG.REDIRECT_URI}`;
 // Initialize MSAL Node object using authentication parameters
 const cca = new msal.ConfidentialClientApplication(config);
 
