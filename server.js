@@ -56,12 +56,11 @@ app.get("/redirect", (req, res) => {
   cca
     .acquireTokenByCode(tokenRequest)
     .then((response) => {
-        // return res.send(response)
       res.send({
         accessToken: response.accessToken,
         tokenType: "Bearer",
-        expires_in: response.expiresOn,
-        extExpiresOn: response.expiresOn,
+        expiresOn: response.expiresOn,
+        extExpiresOn: response.extExpiresOn,
       });
     })
     .catch((error) => res.status(500).send(error));
